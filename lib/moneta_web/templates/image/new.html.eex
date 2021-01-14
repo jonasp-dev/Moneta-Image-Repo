@@ -1,0 +1,10 @@
+<%= form_for @conn, Routes.image_path(@conn, :create), [multipart: true], fn f -> %>
+  <div class="form-group">
+    <label>Upload Photo</label>
+    <%= file_input f, :images, multiple: true, class: "form-control", multiple: true %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

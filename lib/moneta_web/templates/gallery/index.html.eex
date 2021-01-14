@@ -1,0 +1,21 @@
+
+
+<%= if Moneta.Auth.signed_in?(@conn) do %>
+  <%= link "Sign out", to: Routes.session_path(@conn, :delete)%>
+  <%= link "New Image", to: Routes.image_path(@conn, :new), method: :get %>
+  <h1> Logged In </h1>
+<% end %>
+<%= if !Moneta.Auth.signed_in?(@conn) do %>
+  <%= link "Register", to: Routes.user_path(@conn, :new)%>
+  <%= link "Sign in", to: Routes.session_path(@conn, :new)%>
+<% end %>
+
+
+<div class="grid-container">
+  <%= for image <- @images do %>
+    <div>
+      <img class="gallery-img" src=<%= get_img_path(image) %>>
+    </div>
+  <% end %>
+</div>
+
