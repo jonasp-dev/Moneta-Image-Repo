@@ -12,12 +12,11 @@ defmodule Moneta.Image do
   end
 
   @doc false
-  def changeset(image, attrs) do
-    image
-    |> cast(attrs, [:filename, :size, :content_type, :hash])
-    |> cast_assoc(:user)
-    |> validate_required([:filename, :size, :content_type, :hash])
+  def changeset(image, user, attrs) do
 
+    Ecto.build_assoc(user, :images, attrs)
+    |> cast(attrs, [:filename, :size, :content_type, :hash])
+    |> validate_required([:filename, :size, :content_type, :hash])
     |> validate_number(:size, greater_than: 0)
     |> validate_length(:hash, is: 64)
   end

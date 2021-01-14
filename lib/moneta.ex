@@ -5,7 +5,7 @@ defmodule Moneta do
     filename: filename,
     path: tmp_path,
     content_type: content_type,
-  }, user_id) do
+  }, user) do
 
     # tags = generate_tags(tmp_path)
 
@@ -17,9 +17,9 @@ defmodule Moneta do
     Repo.transaction fn ->
       with {:ok, %File.Stat{size: size}} <- File.stat(tmp_path),
       {:ok, image} <- 
-        %Image{} |> Image.changeset(%{
+        %Image{} |> Image.changeset(user, %{
           filename: filename, content_type: content_type,
-          hash: hash, size: size, user: user_id}) 
+          hash: hash, size: size}) 
         |> Repo.insert(),
             
       :ok <- File.cp(

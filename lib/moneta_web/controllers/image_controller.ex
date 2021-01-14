@@ -1,7 +1,7 @@
 defmodule MonetaWeb.ImageController do
     use MonetaWeb, :controller
     
-    alias Moneta.{Image, Repo}
+    alias Moneta.{Image, Repo, Users}
 
     def index(conn, _params) do
       render(conn, "index.html")
@@ -15,9 +15,9 @@ defmodule MonetaWeb.ImageController do
     def create(conn, %{"images" => images} = upload) do
         user_id = conn.private.plug_session["current_user_id"]
         IO.inspect user_id
+        user = Users.get_user_by_userid!(user_id)
         Enum.each(images, fn image ->   
-            case Moneta.create_upload_from_plug_upload(image, user_id) do
-      
+            case Moneta.create_upload_from_plug_upload(image, user) do
                 {:ok, upload}->
                   IO.puts "SUCCEED TO UPLOAD"
                   put_flash(conn, :info, "file uploaded correctly")

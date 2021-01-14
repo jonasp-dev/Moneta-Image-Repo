@@ -13,7 +13,7 @@ defmodule MonetaWeb.UserController do
     case Users.create_user(user_params) do
       {:ok, user} ->
         conn
-        |> put_session(:current_user_id, user.id)
+        |> put_session(:current_user_id,  user.userid)
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: Routes.gallery_path(conn, :index))
 
