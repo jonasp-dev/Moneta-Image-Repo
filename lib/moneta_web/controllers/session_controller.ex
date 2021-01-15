@@ -4,7 +4,14 @@ defmodule MonetaWeb.SessionController do
     alias Moneta.{Auth, Repo}
     
     def new(conn, _params) do
-        render(conn, "new.html")
+      case Auth.signed_in?(conn) do
+        true ->
+          conn
+          |> put_flash(:info, "Must be logged in to upload an image")
+          |> redirect(to: Routes.gallery_path(conn, :index))
+        false ->
+          render(conn, "new.html")
+      end
     end
 
     def create(conn, %{"session" => auth_params}) do

@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :moneta, Moneta.Repo,
-  username: "Jonas",
-  password: "",
+  username: System.get_env("POSTGRES_USERNAME"),
+  password: System.get_env("POSTGRES_PASSWORD"),
   database: "moneta_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
@@ -11,9 +11,9 @@ config :moneta, Moneta.Repo,
 
 
 config :moneta,
-  uploads_directory: "priv/static/images",
-  apikey: "acc_b6d0e983e74c456",
-  apisecret: "d8a8563ccb72c0027b28caa69b563099"
+  uploads_directory: "priv/static/images"
+#   apikey: "acc_b6d0e983e74c456",
+#   apisecret: "d8a8563ccb72c0027b28caa69b563099"
 
 # For development, we disable any cache and enable
 # debugging and code reloading.

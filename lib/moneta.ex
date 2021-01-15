@@ -7,9 +7,6 @@ defmodule Moneta do
     content_type: content_type,
   }, user) do
 
-    # tags = generate_tags(tmp_path)
-
-    # IO.inspect tags
     hash =
       File.stream!(tmp_path, [], 2048)
       |> Image.sha256()

@@ -1,12 +1,19 @@
 defmodule MonetaWeb.UserController do
   use MonetaWeb, :controller
 
-  alias Moneta.Users
+  alias Moneta.{Auth, Users}
   alias Moneta.Users.User
 
   def new(conn, _params) do
-    changeset = Users.change_user(%User{})
-    render(conn, "new.html", changeset: changeset)
+    case Auth.signed_in?(conn) do
+      true->
+        conn
+          |> put_flash(:info, "Must be logged in to upload an image")
+          |> redirect(to: Routes.gallery_path(conn, :index))
+      false ->
+        changeset = Users.change_user(%User{})
+        render(conn, "new.html", changeset: changeset)
+      end
   end
 
   def create(conn, %{"user" => user_params}) do

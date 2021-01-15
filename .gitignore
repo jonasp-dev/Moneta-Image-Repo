@@ -31,4 +31,9 @@ npm-debug.log
 # Since we are building assets from assets/,
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
-/priv/static/
+
+#Directory where images are stored
+/priv/static/images/
+
+#Env file
+*.env
