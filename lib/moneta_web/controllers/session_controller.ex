@@ -19,7 +19,7 @@ defmodule MonetaWeb.SessionController do
         {:ok, user} ->
           conn = 
           conn
-          |> put_session(:current_user_id, user.userid)
+          |> put_session(:current_user_id, user.id)
        
 
         redirect(conn, to: Routes.gallery_path(conn, :index))

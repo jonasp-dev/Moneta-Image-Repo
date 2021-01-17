@@ -3,6 +3,7 @@
     <%= if Moneta.Auth.signed_in?(@conn) do %>
       <%= button "Sign out", to: Routes.session_path(@conn, :delete), method: :get, class: "top-btn btn btn-primary"%>
       <%= button "New Image", to: Routes.image_path(@conn, :new), method: :get, class: "top-btn btn btn-light" %>
+      <%= button "User Profile", to: Routes.user_path(@conn, :show,  @conn.private.plug_session["current_user_id"]), method: :get, class: "top-btn btn btn-primary"%>
     <% end %>
 
 

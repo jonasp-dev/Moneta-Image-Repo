@@ -1,0 +1,7 @@
+<div class="grid-container">
+    <%= for image <- @images do %>
+      <div>
+        <img class="gallery-img" src=<%= get_img_path(image) %>>
+      </div>
+    <% end %>
+  </div>

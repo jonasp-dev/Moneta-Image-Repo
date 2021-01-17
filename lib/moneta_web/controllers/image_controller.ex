@@ -20,15 +20,15 @@ defmodule MonetaWeb.ImageController do
 
     #%{"image" => %Plug.Upload{}=upload}
     def create(conn, %{"images" => images} = upload) do
-        user_id = conn.private.plug_session["current_user_id"]
-
-        user = Users.get_user_by_userid!(user_id)
+        id = conn.private.plug_session["current_user_id"]
+        IO.inspect id
+        user = Users.get_user_by_id!(id)
+        IO.inspect user
         Enum.each(images, fn image ->   
             case Moneta.create_upload_from_plug_upload(image, user) do
                 {:ok, upload}->
                   IO.puts "SUCCEED TO UPLOAD"
                   put_flash(conn, :info, "file uploaded correctly")
-                  
             
                 {:error, reason}->
                 IO.puts "FAILED TO UPLOAD"

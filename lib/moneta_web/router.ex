@@ -16,13 +16,13 @@ defmodule MonetaWeb.Router do
   scope "/", MonetaWeb do
     pipe_through :browser
 
-    get "/", GalleryController, :index
+    resources "/image", ImageController, only: [:new, :create, :delete]
     resources "/register", UserController, only: [:create, :new]
+    resources "/user", UserController, only: [:show]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     get "/delete", SessionController, :delete
-    # post "/search", SearchController, :index
-    resources "/image", ImageController, only: [:new, :create, :delete]
+    get "/", GalleryController, :index
   end
 
   # Other scopes may use custom stacks.

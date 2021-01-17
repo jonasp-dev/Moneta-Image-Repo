@@ -1,7 +1,7 @@
 defmodule MonetaWeb.UserController do
   use MonetaWeb, :controller
 
-  alias Moneta.{Auth, Users}
+  alias Moneta.{Auth, Users, Repo}
   alias Moneta.Users.User
 
   def new(conn, _params) do
@@ -20,13 +20,21 @@ defmodule MonetaWeb.UserController do
     case Users.create_user(user_params) do
       {:ok, user} ->
         conn
-        |> put_session(:current_user_id,  user.userid)
+        |> put_session(:current_user_id,  user.id)
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: Routes.gallery_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
+  end
+
+
+  def show(conn, %{"id" => id}) do
+    user = Users.get_user_by_id!(id)
+    images = Ecto.assoc(user, :images)
+    |> Repo.all
+    render(conn, "show.html", images: images)
   end
 
 end

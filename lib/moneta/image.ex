@@ -13,7 +13,7 @@ defmodule Moneta.Image do
 
   @doc false
   def changeset(image, user, attrs) do
-
+    IO.inspect user
     Ecto.build_assoc(user, :images, attrs)
     |> cast(attrs, [:filename, :size, :content_type, :hash])
     |> validate_required([:filename, :size, :content_type, :hash])

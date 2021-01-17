@@ -36,7 +36,7 @@ defmodule Moneta.Users do
 
   """
   def get_user!(email), do: Repo.get_by!(User, email: email)
-  def get_user_by_userid!(id), do: Repo.get_by!(User, userid: id)
+  def get_user_by_id!(id), do: Repo.get_by!(User, id: id)
 
   @doc """
   Creates a user.
