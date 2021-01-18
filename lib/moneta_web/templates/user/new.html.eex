@@ -1,5 +1,12 @@
-<h1>New User</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :create)) %>
-
-
+<div class="outer">
+  <div class="middle">
+    <div class="inner">
+    <div class="header-text"> Register </div>
+          <%= form_for @changeset, Routes.user_path(@conn, :create), fn f -> %>
+            <%= text_input f, :email, placeholder: "Email", class: "form-style" %>
+            <%= password_input f, :password, placeholder: "Password" %>
+            <button type="submit" class="btn btn-primary login-button">Register</button>   
+          <% end %>
+        </div>
+</div>
+</div>

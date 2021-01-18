@@ -1,6 +1,6 @@
 /* This file is for your main application css. */
 @import "./phoenix.css";
-
+@import '../node_modules/bootstrap/scss/bootstrap';
 /* Alerts and form errors */
 .alert {
   padding: 15px;
@@ -33,4 +33,39 @@
   color: #a94442;
   display: block;
   margin: -1rem 0 2rem;
+}
+
+
+.outer {
+  display: table;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  /*whatever width you want*/
+}
+
+.login-button {
+  width: 120px;
+  margin: 10px auto;
+}
+
+.header-text {
+  font-size: 50px;
+}
+
+.form-style {
+  margin: 10px auto;
 }

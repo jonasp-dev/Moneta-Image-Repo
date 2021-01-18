@@ -1,18 +1,12 @@
-<div class='row'>
-  <div class='col s12 m6 offset-m3'>
-    <div class='card'>
-      <div class='card-content'>
-        <span class='card-title'>LOGIN</span>
-          <div class='row card-form'>
+<div class="outer">
+  <div class="middle">
+    <div class="inner">
+    <div class="header-text"> Login </div>
           <%= form_for @conn, Routes.session_path(@conn, :new), [as: :session], fn f -> %>
-            <%= text_input f, :email, placeholder: "Email" %>
+            <%= text_input f, :email, placeholder: "Email", class: "form-style" %>
             <%= password_input f, :password, placeholder: "Password" %>
-            <%= submit "Submit", class: "btn right secondary-color" %>
-            
+            <button type="submit" class="btn btn-primary login-button">Login</button>   
           <% end %>
-          </div>
-
-      </div>
-    </div>
-  </div>
+        </div>
+</div>
 </div>
